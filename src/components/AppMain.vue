@@ -51,6 +51,7 @@ export default {
     </div>
     <div class="maincont">
           <Movie v-for="(film, index) in store.FilmList" :film="film" :key="index" />
+          SERIE TV
           <Series v-for="(series, num) in store.SeriesList" :series="series" :key="num" />
       </div>
     </div>
