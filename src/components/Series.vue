@@ -1,37 +1,39 @@
 <script>
 export default {
     props: {
-        film: Object,
-        key: Number
+        series: Object,
+        num: Number
     },
     methods: {
       star(vote) {
        let newVote = parseInt(Math.ceil(vote / 2))
         return newVote
-      },
+      }
     }
 }
 </script>
 <template lang="">
     <div>
+        <div>
         <div class="cardContainer">
         <div class="card">
           <div class="image">
-            <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
+            <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" alt="">
           </div>
           <div class="name">
-            {{ film.title }}
+            {{ series.name }}
           </div>
           <div class="original-name">
-            {{ film.original_title }}
+            {{ series.original_name }}
           </div>
           <div class="language">
-            {{ film.original_language }}
+            {{ series.original_language }}
           </div>
           <div class="vote">
-            {{ star(film.vote_average) }}
+            {{ star(series.vote_average) }}
           </div>
         </div>
+    </div>
     </div>
     </div>
 </template>

@@ -1,6 +1,7 @@
 <script>
 import { store } from '../store.js'
 import Movie from './Movie.vue'
+import Series from './Series.vue'
 import AppSearch from './AppSearch.vue'
 import axios from 'axios'
 
@@ -8,6 +9,7 @@ export default {
     components: {
         Movie,
         AppSearch,
+        Series,
     },
     data(){
         return{
@@ -19,17 +21,26 @@ export default {
     },
     methods: {
         GetMovie(word){
-            let newUrl = store.url;
+            let newMovieUrl = store.MovieUrl;
+
+            let newSeriesUrl = store.SeriesUrl;
+
             if(word != undefined) {
     
-              newUrl += `${word}`
+              newMovieUrl += `${word}`
+
+              newSeriesUrl += `${word}`
     
             }
-              axios.get(newUrl).then((response) => {
+              axios.get(newMovieUrl).then((response) => {
               console.log(response.data.results)
               store.FilmList = response.data.results
             })
-          }
+            axios.get(newSeriesUrl).then((response) => {
+              console.log(response.data.results)
+              store.SeriesList = response.data.results
+            })
+          },
     }
 }
 </script>
@@ -40,6 +51,7 @@ export default {
     </div>
     <div class="maincont">
           <Movie v-for="(film, index) in store.FilmList" :film="film" :key="index" />
+          <Series v-for="(series, num) in store.SeriesList" :series="series" :key="num" />
       </div>
     </div>
 </template>
