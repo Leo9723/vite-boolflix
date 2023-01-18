@@ -1,9 +1,12 @@
 <script>
 export default {
+    data(){
+        return {
+            name: ''
+        }
+    },
     methods: {
         search(){
-            this.name = this.name.split(' ')
-            this.name = this.name.join('+')
             this.$emit('search', this.name)
         }
     }

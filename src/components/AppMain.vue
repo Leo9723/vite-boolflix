@@ -16,9 +16,6 @@ export default {
             store,
         }
     },
-    created() {
-        this.GetMovie();
-    },
     methods: {
         GetMovie(word){
             let newMovieUrl = store.MovieUrl;
@@ -33,14 +30,11 @@ export default {
     
             }
               axios.get(newMovieUrl).then((response) => {
-              console.log(response.data.results)
               store.FilmList = response.data.results
             })
             axios.get(newSeriesUrl).then((response) => {
-              console.log(response.data.results)
               store.SeriesList = response.data.results
             })
-            console.log(word)
           },
     }
 }

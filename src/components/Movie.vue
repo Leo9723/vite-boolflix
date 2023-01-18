@@ -1,12 +1,22 @@
 <script>
+import axios from 'axios'
+
 export default {
   data(){
     return {
+      CastList: [],
     }
   },
     props: {
         film: Object,
         key: Number
+    },
+    created(){
+      let castUrl = "https://api.themoviedb.org/3/movie/"
+        castUrl += `${this.film.id}/credits?api_key=cbf0f0875d9b4297f36cceb44d4d7f83`
+        axios.get(castUrl).then((response) => {
+              this.CastList = response.data.cast.slice(0, 5)
+            })
     },
     methods: {
       star(vote) {
@@ -38,6 +48,14 @@ export default {
           <div class="image">
             <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
           </div>
+          <div class="cast">
+<!--             <div>
+              {{ this.CastList }}
+            </div> -->
+            <div v-for = 'item in this.CastList'>
+              {{ item.original_name }}
+            </div>
+          </div>
           <div class="name">
             {{ film.title }}
           </div>
@@ -48,47 +66,9 @@ export default {
             <img :src="country(film.original_language)" :alt="film.original_language"/>
           </div>
           <div class="vote">
-            <div class="star" v-if="star(film.vote_average) == 0">
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="star" v-else-if="star(film.vote_average) == 1">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="star" v-else-if="star(film.vote_average) == 2">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="star" v-else-if="star(film.vote_average) == 3">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="star" v-else-if="star(film.vote_average) == 4">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="star" v-else="star(film.vote_average) == 5">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
+            <div class="star">
+              <i class="fa-solid fa-star" v-for="i in star(film.vote_average)"></i>
+              <i class="fa-regular fa-star" v-for="i in 5 - star(film.vote_average)"></i>
             </div>
           </div>
         </div>
