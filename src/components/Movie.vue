@@ -11,7 +11,6 @@ export default {
   },
     props: {
         film: Object,
-        key: Number
     },
     created(){
       let castUrl = "https://api.themoviedb.org/3/movie/"
@@ -26,7 +25,7 @@ export default {
         return newVote
       },
       country(language) {
-        if (language = 'en') {
+        if (language == 'en') {
           language = 'gb'
         }
 
@@ -46,12 +45,13 @@ export default {
 <template lang="">
     <div>
         <div class="cardContainer">
-        <div class="card" v-if="store.GenreList.id.includes(store.SelectedGenre)">
+        <div class="card">
+          {{ film }}
           <div class="image">
             <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
           </div>
           <div class="cast">
-            <div v-for = 'item in this.CastList'>
+            <div v-for = 'item in CastList'>
               {{ item.original_name }}
             </div>
           </div>

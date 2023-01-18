@@ -10,7 +10,7 @@ export default {
     },
     methods: {
         filter(){
-            this.$emit('filter', this.genre)
+            this.store.SelectedGenre = this.genre
         }
     }
 }

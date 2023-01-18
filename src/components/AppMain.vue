@@ -19,7 +19,23 @@ export default {
         }
     },
     created(){
-        this.GetFilteredMovie()
+        this.GetGenres()
+    },
+    computed:{
+        FilmList(){
+            if(this.store.SelectedGenre){
+                return this.store.FilmList.filter((item)=>item.genre_ids.includes(this.store.SelectedGenre))
+            }
+
+            return this.store.FilmList
+        },
+        SeriesList(){
+            if(this.store.SelectedGenre){
+                return this.store.SeriesList.filter((item)=>item.genre_ids.includes(this.store.SelectedGenre))
+            }
+
+            return this.store.FilmList
+        }
     },
     methods: {
         GetMovie(word){
@@ -41,13 +57,10 @@ export default {
               store.SeriesList = response.data.results
             })
           },
-          GetFilteredMovie(genre){
+          GetGenres(){
             axios.get(store.GenreUrl).then((response) => {
               store.GenreList = response.data.genres
             })
-            store.SelectedGenre = genre
-            console.log(store.SelectedGenre)
-            
           },
     }
 }
@@ -56,13 +69,13 @@ export default {
     <div>
         <div class="search">
         <AppSearch @search="GetMovie"></AppSearch>
-        <AppSelect @filter="GetFilteredMovie"></AppSelect>
+        <AppSelect></AppSelect>
     </div>
     <div class="maincont">
-          <div v-if="store.FilmList.length > 0">FILM</div>
-          <Movie v-for="(film, index) in store.FilmList" :film="film" :key="index" />
-          <div v-if="store.SeriesList.length > 0">SERIE TV</div>
-          <Series v-for="(series, num) in store.SeriesList" :series="series" :key="num" />
+          <div v-if="FilmList.length > 0">FILM</div>
+          <Movie v-for="(film, index) in FilmList" :film="film" :key="film.id" />
+          <div v-if="SeriesList.length > 0">SERIE TV</div>
+          <Series v-for="(series, num) in SeriesList" :series="series" :key="series.id" />
       </div>
     </div>
 </template>

@@ -1,15 +1,17 @@
 <script>
 import axios from 'axios'
+import { store } from '../store.js'
+
 
 export default {
   data(){
     return {
+      store,
       CastList: [],
     }
   },
     props: {
         series: Object,
-        num: Number
     },
     created(){
       let castUrl = "https://api.themoviedb.org/3/tv/"
@@ -46,11 +48,12 @@ export default {
         <div>
         <div class="cardContainer">
         <div class="card">
+          {{ series }}
           <div class="image">
             <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" alt="">
           </div>
           <div class="cast">
-            <div v-for = 'item in this.CastList'>
+            <div v-for = 'item in CastList'>
               {{ item.original_name }}
             </div>
           </div>
