@@ -45,7 +45,48 @@ export default {
             <img :src="country(series.original_language)" :alt="series.original_language"/>
           </div>
           <div class="vote">
-            {{ star(series.vote_average) }}
+            <div class="star" v-if="star(series.vote_average) == 0">
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="star" v-else-if="star(series.vote_average) == 1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="star" v-else-if="star(series.vote_average) == 2">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="star" v-else-if="star(series.vote_average) == 3">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="star" v-else-if="star(series.vote_average) == 4">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="star" v-else="star(series.vote_average) == 5">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
           </div>
         </div>
     </div>
