@@ -8,6 +8,21 @@ export default {
       star(vote) {
        let newVote = parseInt(Math.ceil(vote / 2))
         return newVote
+      },
+      country(language) {
+        if (language = 'en') {
+          language = 'gb'
+        }
+
+
+        language = language.toUpperCase()
+
+
+        let newImgUrl = 'https://flagsapi.com/'
+
+        newImgUrl += `${language}/flat/64.png`
+
+        return newImgUrl
       }
     }
 }
@@ -27,7 +42,7 @@ export default {
             {{ series.original_name }}
           </div>
           <div class="language">
-            {{ series.original_language }}
+            <img :src="country(series.original_language)" :alt="series.original_language"/>
           </div>
           <div class="vote">
             {{ star(series.vote_average) }}

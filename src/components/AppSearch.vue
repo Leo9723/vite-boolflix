@@ -2,6 +2,8 @@
 export default {
     methods: {
         search(){
+            this.name = this.name.split(' ')
+            this.name = this.name.join('+')
             this.$emit('search', this.name)
         }
     }

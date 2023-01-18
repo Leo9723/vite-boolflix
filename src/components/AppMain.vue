@@ -40,6 +40,7 @@ export default {
               console.log(response.data.results)
               store.SeriesList = response.data.results
             })
+            console.log(word)
           },
     }
 }
@@ -50,8 +51,9 @@ export default {
         <AppSearch @search="GetMovie"></AppSearch>
     </div>
     <div class="maincont">
+          <div v-if="store.FilmList.length > 0">FILM</div>
           <Movie v-for="(film, index) in store.FilmList" :film="film" :key="index" />
-          SERIE TV
+          <div v-if="store.SeriesList.length > 0">SERIE TV</div>
           <Series v-for="(series, num) in store.SeriesList" :series="series" :key="num" />
       </div>
     </div>
