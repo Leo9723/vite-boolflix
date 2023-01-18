@@ -46,7 +46,7 @@ export default {
 <template lang="">
     <div>
         <div class="cardContainer">
-        <div class="card" v-if="store.GenreList.id.includes(SelectedGenre)">
+        <div class="card" v-if="store.GenreList.id.includes(store.SelectedGenre)">
           <div class="image">
             <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
           </div>
