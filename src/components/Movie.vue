@@ -49,9 +49,6 @@ export default {
             <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
           </div>
           <div class="cast">
-<!--             <div>
-              {{ this.CastList }}
-            </div> -->
             <div v-for = 'item in this.CastList'>
               {{ item.original_name }}
             </div>

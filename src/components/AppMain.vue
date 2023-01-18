@@ -3,18 +3,23 @@ import { store } from '../store.js'
 import Movie from './Movie.vue'
 import Series from './Series.vue'
 import AppSearch from './AppSearch.vue'
+import AppSelect from './AppSelect.vue'
 import axios from 'axios'
 
 export default {
     components: {
         Movie,
         AppSearch,
+        AppSelect,
         Series,
     },
     data(){
         return{
             store,
         }
+    },
+    created(){
+        this.GetFilteredMovie()
     },
     methods: {
         GetMovie(word){
@@ -36,6 +41,12 @@ export default {
               store.SeriesList = response.data.results
             })
           },
+          GetFilteredMovie(genre){
+            axios.get(store.GenreUrl).then((response) => {
+              store.GenreList = response.data.genres
+            })
+            console.log(genre)
+          },
     }
 }
 </script>
@@ -43,6 +54,7 @@ export default {
     <div>
         <div class="search">
         <AppSearch @search="GetMovie"></AppSearch>
+        <AppSelect @filter="GetFilteredMovie"></AppSelect>
     </div>
     <div class="maincont">
           <div v-if="store.FilmList.length > 0">FILM</div>
