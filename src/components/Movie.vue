@@ -1,9 +1,11 @@
 <script>
 import axios from 'axios'
+import { store } from '../store.js'
 
 export default {
   data(){
     return {
+      store,
       CastList: [],
     }
   },
@@ -44,7 +46,7 @@ export default {
 <template lang="">
     <div>
         <div class="cardContainer">
-        <div class="card">
+        <div class="card" v-if="store.GenreList.id.includes(SelectedGenre)">
           <div class="image">
             <img :src="`https://image.tmdb.org/t/p/w500${film.poster_path}`" alt="">
           </div>

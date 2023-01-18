@@ -45,7 +45,9 @@ export default {
             axios.get(store.GenreUrl).then((response) => {
               store.GenreList = response.data.genres
             })
-            console.log(genre)
+            store.SelectedGenre = genre
+            console.log(store.SelectedGenre)
+            
           },
     }
 }
