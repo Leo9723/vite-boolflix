@@ -48,28 +48,32 @@ export default {
         <div>
         <div class="cardContainer">
         <div class="card">
-          {{ series }}
+          <!-- immagine copertina -->
           <div class="image">
-            <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" alt="">
-          </div>
-          <div class="cast">
-            <div v-for = 'item in CastList'>
-              {{ item.original_name }}
-            </div>
+            <img :src="`https://image.tmdb.org/t/p/w342${series.poster_path}`" alt="">
+            <div class="bkg-gray"></div>
           </div>
           <div class="name">
             {{ series.name }}
           </div>
-          <div class="original-name">
-            {{ series.original_name }}
-          </div>
-          <div class="language">
-            <img :src="country(series.original_language)" :alt="series.original_language"/>
-          </div>
-          <div class="vote">
-            <div class="star">
-              <i class="fa-solid fa-star" v-for="i in star(series.vote_average)"></i>
-              <i class="fa-regular fa-star" v-for="i in 5 - star(series.vote_average)"></i>
+          <!-- dettagli serie tv -->
+          <div class="details">
+            <div class="overview">
+              {{ series.overview }}
+            </div>
+            <div class="cast">
+              <div v-for = 'item in CastList' class="actor">
+                {{ item.original_name }}
+              </div>
+            </div>
+            <div class="vote">
+              <div class="star">
+                <i class="fa-solid fa-star" v-for="i in star(series.vote_average)"></i>
+                <i class="fa-regular fa-star" v-for="i in 5 - star(series.vote_average)"></i>
+              </div>
+            </div>
+            <div class="language">
+              <img :src="country(series.original_language)" :alt="series.original_language"/>
             </div>
           </div>
         </div>
@@ -77,6 +81,6 @@ export default {
     </div>
     </div>
 </template>
-<style lang="">
-    
+<style lang="scss">
+
 </style>

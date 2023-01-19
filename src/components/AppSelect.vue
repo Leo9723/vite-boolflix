@@ -24,6 +24,10 @@ export default {
         </select>
     </div>
 </template>
-<style lang="">
-    
+<style lang="scss">
+@use './styles/partials/mixins' as *;
+    select {
+        margin-left: 20px;
+        @include my-border-red
+    }
 </style>

@@ -15,6 +15,7 @@ export default {
     <AppMain></AppMain>
   </div>
 </template>
-<style lang="">
-  
+<style lang="scss">
+    @use './components/styles/general.scss' as *
+
 </style>

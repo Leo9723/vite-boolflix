@@ -17,9 +17,13 @@ export default {
 </script>
 <template lang="">
     <div>
-        <input type="text" name="" id="" v-model="name" @keyup.enter="search">
+       Cerca: <input type="text" name="" id="" v-model="name" @keyup.enter="search">
     </div>
 </template>
-<style lang="">
-    
+<style lang="scss" scoped>
+@use './styles/partials/mixins' as *;
+
+    input {
+        @include my-border-red
+        }
 </style>
