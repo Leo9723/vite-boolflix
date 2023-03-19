@@ -5,7 +5,7 @@ export default {
     data(){
         return {
             store,
-            genre: ''
+            genre: '',
         }
     },
     methods: {

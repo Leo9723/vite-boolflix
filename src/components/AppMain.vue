@@ -23,6 +23,7 @@ export default {
         this.GetGenres()
     },
     computed:{
+        
         /* filtraggio film per genere */
         FilmList(){
             if(this.store.SelectedGenre){
@@ -53,6 +54,11 @@ export default {
 
               newSeriesUrl += `${word}`
     
+            }
+            if(word == ''){
+                newMovieUrl += 'a'
+                
+                newSeriesUrl += 'a'
             }
               axios.get(newMovieUrl).then((response) => {
               store.FilmList = response.data.results

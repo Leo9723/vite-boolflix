@@ -11,8 +11,7 @@ export default {
 </script>
 <template lang="">
     <div>
-        <img src="/public/logo.png" alt="" v-if="store.logo">
-        <img src="/public/logo.png" class="small" alt="" v-else>
+        <img src="/public/logo.png" alt="" :class="store.logo != true ? 'small' : ''">
     </div>
 </template>
 <style lang="scss" scoped>
@@ -21,6 +20,7 @@ div{
     justify-content: center;
     img{
        width: 70%;
+       transition: all 0.3s;
        
     }
     .small{
